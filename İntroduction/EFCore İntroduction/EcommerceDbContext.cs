@@ -2,9 +2,141 @@
 using Microsoft.SqlServer.Server;
 
 
+
+
+
+
+#region Veri nece elave edilir?
+
+//EcommerceDbContext context = new();
+
+//Product product = new()
+//{
+//    ProductName = "A product",
+//    Price = 500
+//};
+
+#region context.AddAsync Funksiyası
+//await context.AddAsync(product);
+#endregion
+
+#region context.DbSet.AddAsync Funksiyası
+//await context.Products.AddAsync(product);
+#endregion
+
+//await context.SaveChangesAsync(); 
+
+#endregion
+
+
+#region SaveChanges nedir?
+// Savechanges is a function that creates insert, update and delete operations within a transaction, sends them to the database and executes them.
+#endregion
+
+
+#region EF Core baxış bucağından bir verinin elave edilmesini nece bilirik?
+//EcommerceDbContext context = new();
+//Product product = new()
+//{
+//    ProductName = "B product",
+//    Price = 2000
+
+//};
+
+//Console.WriteLine(context.Entry(product).State);
+
+//    await context.AddAsync(product);
+
+//Console.WriteLine(context.Entry(product).State);
+
+//    await context.SaveChangesAsync();
+
+//Console.WriteLine(context.Entry(product).State);
+#endregion
+
+
+#region Birden çox veri elave ederken nelere diqqet etmeliyik ?
+//Since the SaveChanges function will create a transaction each time it is triggered, we should avoid using it for each transaction made with EF Core! Because a transaction specific to each transaction means extra cost in terms of database. Therefore, using savechanges once to be able to send all our transactions to the database with a single transaction as much as possible will contribute to both cost and manageability.
+
+#region SaveChanges verimli istifade
+//EcommerceDbContext context = new();
+
+//Product product1 = new()
+//{
+//    ProductName = "C product",
+//    Price = 400,
+//};
+
+//Product product2 = new()
+//{
+//    ProductName = "D product",
+//    Price = 800,
+//};
+
+//Product product3 = new()
+//{
+//    ProductName = "E product",
+//    Price = 100,
+//};
+
+//Product product4 = new()
+//{
+//    ProductName = "G product",
+//    Price = 600,
+//};
+
+//Product product5 = new()
+//{
+//    ProductName = "H product",
+//    Price = 700,
+//};
+
+//await context.AddAsync(product1);
+
+//await context.AddAsync(product2);
+
+//await context.AddAsync(product3);
+
+//await context.AddAsync(product4);
+
+//await context.AddAsync(product5);
+
+//await context.SaveChangesAsync();
+#endregion
+
+#endregion
+
+
+#region Elave edilen verinin Generate edilen Id-ni  elde etme
+//EcommerceDbContext context = new();
+
+//Product product6 = new()
+//{
+//    ProductName = "O product",
+//    Price = 1500,
+//};
+
+//await context.AddAsync(product6);
+
+//await context.SaveChangesAsync();
+
+//Console.WriteLine(product6.Id);
+#endregion
+
+
+
+
+
+
+
+
+
+
+
+
 public class EcommerceDbContext:DbContext
 {
-        DbSet<Product> Products { get; set; }
+    public  DbSet<Product> Products { get; set; }
 
 
 
@@ -19,7 +151,7 @@ public class EcommerceDbContext:DbContext
 
 
 
-        optionsBuilder.UseSqlServer("Server=LAPTOP-8PPT5PTN\\SQLEXPRESS; Database=EcommerceDb");
+        optionsBuilder.UseSqlServer("Server=LAPTOP-8PPT5PTN\\SQLEXPRESS; Database=EcommerceDb; Trusted_Connection = True; TrustServerCertificate=true;");
     }
 
 
@@ -27,11 +159,13 @@ public class EcommerceDbContext:DbContext
 
 
 
-    public class Product
-    {
+public class Product
+{
       public int Id { get; set; }
-
-    }
+      public string ProductName { get; set; }
+      public float Price { get; set; }
+      
+}
 
 
 #region OnConfiguring  ile Konfigürasyon ayarlarını etmek
