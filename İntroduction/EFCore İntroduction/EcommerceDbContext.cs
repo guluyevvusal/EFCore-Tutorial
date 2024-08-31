@@ -2,6 +2,27 @@
 using Microsoft.SqlServer.Server;
 
 
+
+
+#region Veri nece silinir ?
+//EcommerceDbContext context = new();
+
+//Product product = await context.Products.FirstOrDefaultAsync(p=>p.Id == 4);
+
+//context.Products.Remove(product);
+
+//await context.SaveChangesAsync();
+#endregion
+
+
+
+
+
+
+
+
+
+
 #region Veri necə güncəllənir  ?
 //EcommerceDbContext context = new();
 
