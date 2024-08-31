@@ -2,6 +2,56 @@
 using Microsoft.SqlServer.Server;
 
 
+#region Veri necə güncəllənir  ?
+//EcommerceDbContext context = new();
+
+//Product product = await context.Products.FirstOrDefaultAsync(p => p.Id == 3);
+
+//product.Id = 5;
+//product.ProductName = "V product";
+
+//await context.SaveChangesAsync();
+
+#endregion
+
+#region Change Tracker Apı nədir ? 
+//ChangeTracker is a mechanism responsible for tracking data coming from the context. Thanks to this tracking mechanism, it is understood that update or delete queries will be created as a result of operations related to data coming from the context!
+#endregion
+
+#region Change tracker Apı ilə izlənilməyən verilər necə güncəllənir ?
+//EcommerceDbContext context = new();
+
+//Product product = new()
+//{
+//    Id = 3,
+//    ProductName = "Test Product",
+//    Price = 180
+//};
+
+//context.Products.Update(product);
+
+//await context.SaveChangesAsync();
+
+//The Update function is used to update objects that are not tracked by the ChangeTracker mechanism!
+#endregion
+
+#region Entry State nedir ?
+//It is a reference that expresses the state of an entity instance.
+
+#endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
